@@ -1,26 +1,25 @@
 import { useEffect, useState } from "react";
 import { getArticlesById } from "../utils/article-by-id";
 import { ArticleData } from "./article-detail";
+import { useParams } from "react-router-dom";
 
 export const IndividualArticleDetails = () => {
   const [article, setArticle] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const { article_id } = useParams();
 
   useEffect(() => {
-    getArticlesById(1).then((data) => {
+    getArticlesById(article_id).then((data) => {
       setArticle(data);
       setIsLoading(false);
     });
   }, []);
 
-  console.log(article);
-
   if (isLoading) {
-    return <p>Is Loading..</p>;
+    return <p>Loading..</p>;
   }
   return (
     <div>
-      <h3>Article details</h3>
       <ArticleData article={article} />
     </div>
   );

@@ -1,8 +1,13 @@
+import { Link } from "react-router-dom";
+
 export const ArticlesCard = (props) => {
   const { article } = props;
   return (
-    <div
+    <Link
+      to={`/articles/${article.article_id}`}
       style={{
+        textDecoration: "none",
+        color: "black",
         maxHeight: "350px",
         maxWidth: "400px",
         display: "flex",
@@ -41,6 +46,6 @@ export const ArticlesCard = (props) => {
           </h5>
         </div>
       </div>
-    </div>
+    </Link>
   );
 };
