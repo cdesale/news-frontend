@@ -30,7 +30,7 @@ export const CommentContainer = (props) => {
       {isLoading && <p>Loading...</p>}
       {comments &&
         comments.map((comment) => {
-          return <CommentCard comment={comment} />;
+          return <CommentCard comment={comment} key={comment.comment_id} />;
         })}
     </>
   );
