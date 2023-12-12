@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { CommentCard } from "./comment-card";
 import { deleteComment } from "../utils/api";
 import Toast from "react-bootstrap/Toast";
+import { AddCommentContainer } from "./comment-adder";
 
 export const CommentContainer = (props) => {
   const [comments, setComments] = useState([]);
@@ -18,6 +19,11 @@ export const CommentContainer = (props) => {
         comments.filter((comment) => comment.comment_id !== comment_id)
       );
     });
+  };
+
+  const addCommentInContainer = (newComment) => {
+    // Add the new comment to the front of the list and update state.
+    setComments([newComment, ...comments]);
   };
 
   useEffect(() => {
@@ -55,6 +61,12 @@ export const CommentContainer = (props) => {
       >
         Comments
       </div>
+
+      <AddCommentContainer
+        article_id={article_id}
+        addCommentInContainer={addCommentInContainer}
+      />
+
       {isLoading && <p>Loading...</p>}
       {comments &&
         comments.map((comment) => {
