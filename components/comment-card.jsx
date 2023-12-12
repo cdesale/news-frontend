@@ -10,6 +10,7 @@ export const CommentCard = (props) => {
         padding: "1rem",
         justifyContent: "center",
         margin: "5px",
+        maxWidth: "500px",
       }}
     >
       <div className="row" style={{ marginBottom: "5px" }}>
