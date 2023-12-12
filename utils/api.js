@@ -7,3 +7,9 @@ export const getAllArticles = () => {
       return data["articles"];
     });
 };
+
+export const deleteComment = (comment_id) => {
+  return axios.delete(
+    `https://news-back-end.onrender.com/api/comments/${comment_id}`
+  );
+};
