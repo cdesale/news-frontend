@@ -8,7 +8,7 @@ export const ArticlesCard = (props) => {
       style={{
         textDecoration: "none",
         color: "black",
-        maxHeight: "350px",
+        maxHeight: "375px",
         maxWidth: "400px",
         display: "flex",
         flexDirection: "column",
@@ -21,7 +21,7 @@ export const ArticlesCard = (props) => {
     >
       <img src={article.article_img_url}></img>
       <div style={{ padding: "8px" }}>
-        <h3 style={{ margin: "0px" }}>{article.title}</h3>
+        <div style={{ margin: "0px" }}>{article.title}</div>
         <div
           style={{
             display: "flex",
@@ -30,20 +30,20 @@ export const ArticlesCard = (props) => {
             marginTop: "16px",
           }}
         >
-          <h5
+          <div
             style={{
               margin: "0px",
             }}
           >
             Topic: {article.topic}
-          </h5>
-          <h5
+          </div>
+          <div
             style={{
               margin: "0px",
             }}
           >
             Author: {article.author}
-          </h5>
+          </div>
         </div>
       </div>
     </Link>
