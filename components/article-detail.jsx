@@ -1,14 +1,7 @@
+import { getDateString } from "../utils/date";
+
 export const ArticleData = (props) => {
   const { article } = props;
-
-  const getDateString = (dateString) => {
-    const dateObject = new Date(dateString);
-    const year = dateObject.getFullYear();
-    const month = dateObject.getMonth() + 1;
-    const day = dateObject.getDate();
-    const finalDate = day + "/" + month + "/" + year;
-    return finalDate;
-  };
 
   return (
     <div

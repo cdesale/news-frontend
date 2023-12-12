@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { getArticlesById } from "../utils/article-by-id";
 import { ArticleData } from "./article-detail";
 import { useParams } from "react-router-dom";
+import { CommentContainer } from "./comments-container";
 
 export const IndividualArticleDetails = () => {
   const [article, setArticle] = useState([]);
@@ -21,6 +22,7 @@ export const IndividualArticleDetails = () => {
   return (
     <div>
       <ArticleData article={article} />
+      <CommentContainer article_id={article.article_id} />
     </div>
   );
 };
