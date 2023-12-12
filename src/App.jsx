@@ -1,8 +1,10 @@
 import { useState } from "react";
 import "./App.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 import { Header } from "../components/header";
 import { ArticleContainer } from "../components/article-container";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { IndividualArticleDetails } from "../components/individual-article-container";
 
 function App() {
   return (
@@ -11,6 +13,10 @@ function App() {
         <Header />
         <Routes>
           <Route path="/" element={<ArticleContainer />} />
+          <Route
+            path="/articles/:article_id"
+            element={<IndividualArticleDetails />}
+          />
         </Routes>
       </div>
     </BrowserRouter>
