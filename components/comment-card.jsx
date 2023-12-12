@@ -1,11 +1,14 @@
 import { useState } from "react";
 import { getDateString } from "../utils/date";
+import { currentUser } from "../utils/user";
 
 export const CommentCard = (props) => {
-  const [showDelete, setShowDelete] = useState(false);
+  const [showDeleteCard, setShowDeleteCard] = useState(false);
   const [showDeleteInProgress, setShowDeleteInProgress] = useState(false);
   const [showDeleteFailed, setShowDeleteFailed] = useState(false);
+
   const { comment, deleteCommentFromContainer } = props;
+  const showDeleteButton = comment.author === currentUser;
 
   const triggerCommentDeletion = () => {
     setShowDeleteFailed(false);
@@ -32,22 +35,25 @@ export const CommentCard = (props) => {
         maxWidth: "500px",
       }}
     >
-      {!showDelete && (
+      {!showDeleteCard && (
         <>
           <div
             className="d-flex justify-content-between"
             style={{ marginBottom: "5px" }}
           >
             <div>Author: {comment.author}</div>
-            <div>
-              <button
-                type="button"
-                className="btn btn-secondary"
-                onClick={() => setShowDelete(true)}
-              >
-                Delete
-              </button>
-            </div>
+
+            {showDeleteButton && (
+              <div>
+                <button
+                  type="button"
+                  className="btn btn-secondary"
+                  onClick={() => setShowDeleteCard(true)}
+                >
+                  Delete
+                </button>
+              </div>
+            )}
           </div>
           <div className="row">
             <div>Comment: {comment.body}</div>
@@ -61,8 +67,8 @@ export const CommentCard = (props) => {
           </div>
         </>
       )}
-      
-      {showDelete && (
+
+      {showDeleteCard && (
         <>
           <div className="row text-center">
             <p>Do you want to delete this comment?</p>
@@ -92,7 +98,7 @@ export const CommentCard = (props) => {
                   className="btn btn-secondary"
                   style={{ marginLeft: "5px" }}
                   onClick={() => {
-                    setShowDelete(false);
+                    setShowDeleteCard(false);
                     setShowDeleteFailed(false);
                   }}
                 >

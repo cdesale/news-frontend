@@ -7,16 +7,15 @@ import Toast from "react-bootstrap/Toast";
 export const CommentContainer = (props) => {
   const [comments, setComments] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-
+  const [triggerEffect, setTriggerEffect] = useState(Date.now());
   const [showCommentDeletedToast, setShowCommentDeletedToast] = useState(false);
-  const toggleShowCommentDeletedToast = () =>
-    setShowCommentDeletedToast(!showCommentDeletedToast);
 
   const { article_id } = props;
 
   const deleteCommentFromContainer = (comment_id) => {
     return deleteComment(comment_id).then(() => {
-      toggleShowCommentDeletedToast();
+      setTriggerEffect(Date.now());
+      setShowCommentDeletedToast(true);
     });
   };
 
@@ -25,13 +24,13 @@ export const CommentContainer = (props) => {
       setComments(data);
       setIsLoading(false);
     });
-  }, [deleteCommentFromContainer]);
+  }, [triggerEffect]);
 
   return (
     <>
       <div className="d-flex justify-content-center">
         <Toast
-          onClose={toggleShowCommentDeletedToast}
+          onClose={() => setShowCommentDeletedToast(false)}
           show={showCommentDeletedToast}
         >
           <Toast.Header>
