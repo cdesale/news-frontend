@@ -17,6 +17,7 @@ export const ArticleData = (props) => {
         borderRadius: "1rem",
         padding: "1rem",
         margin: "5px",
+        maxWidth: "500px",
       }}
     >
       <div className="text-center">
@@ -27,8 +28,11 @@ export const ArticleData = (props) => {
           <div>Author: {article.author}</div>
           <div>Date: {getDateString(article.created_at)}</div>
         </div>
-        <div className="row">
-          <img style={{ padding: "0px" }} src={article.article_img_url}></img>
+        <div className="row justify-content-center">
+          <img
+            style={{ padding: "0px", maxWidth: "575px", maxHeight: "350px" }}
+            src={article.article_img_url}
+          ></img>
         </div>
         <div className="row">{article.body}</div>
         <div
