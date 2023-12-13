@@ -53,22 +53,28 @@ export const AddCommentContainer = (props) => {
         <p>Add a comment</p>
       </div>
 
-      <div className="d-flex justify-content-center">
+      <div className="container">
         <form onSubmit={handleSubmit}>
-          <input
-            type="text"
-            placeholder="Type comment.."
-            value={commentInput}
-            onChange={updateComment}
-          ></input>
+          <div className="row">
+            <textarea
+              type="text"
+              placeholder="Type comment.."
+              value={commentInput}
+              onChange={updateComment}
+              required={true}
+            ></textarea>
+          </div>
+          <div className="row">
+            <div className="d-flex justify-content-end p-0 mt-2">
+              {!isLoading && <button>Post</button>}
 
-          {!isLoading && <button>Post comment</button>}
-
-          {isLoading && (
-            <div className="spinner-border" role="status">
-              <span className="sr-only"></span>
+              {isLoading && (
+                <div className="spinner-border" role="status">
+                  <span className="sr-only"></span>
+                </div>
+              )}
             </div>
-          )}
+          </div>
         </form>
       </div>
 
