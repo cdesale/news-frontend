@@ -13,3 +13,14 @@ export const deleteComment = (comment_id) => {
     `https://news-back-end.onrender.com/api/comments/${comment_id}`
   );
 };
+
+export const addNewComment = (article_id, comment) => {
+  return axios
+    .post(
+      `https://news-back-end.onrender.com/api/articles/${article_id}/comments`,
+      comment
+    )
+    .then(({ data }) => {
+      return data["comment"][0];
+    });
+};
