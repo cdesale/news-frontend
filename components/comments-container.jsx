@@ -7,15 +7,16 @@ import Toast from "react-bootstrap/Toast";
 export const CommentContainer = (props) => {
   const [comments, setComments] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [triggerEffect, setTriggerEffect] = useState(Date.now());
   const [showCommentDeletedToast, setShowCommentDeletedToast] = useState(false);
 
   const { article_id } = props;
 
   const deleteCommentFromContainer = (comment_id) => {
     return deleteComment(comment_id).then(() => {
-      setTriggerEffect(Date.now());
       setShowCommentDeletedToast(true);
+      setComments(
+        comments.filter((comment) => comment.comment_id !== comment_id)
+      );
     });
   };
 
@@ -24,7 +25,7 @@ export const CommentContainer = (props) => {
       setComments(data);
       setIsLoading(false);
     });
-  }, [triggerEffect]);
+  }, []);
 
   return (
     <>

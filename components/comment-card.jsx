@@ -14,14 +14,10 @@ export const CommentCard = (props) => {
     setShowDeleteFailed(false);
     setShowDeleteInProgress(true);
 
-    deleteCommentFromContainer(comment.comment_id)
-      .then(() => {
-        setShowDeleteInProgress(false);
-      })
-      .catch((err) => {
-        setShowDeleteInProgress(false);
-        setShowDeleteFailed(true);
-      });
+    deleteCommentFromContainer(comment.comment_id).catch((err) => {
+      setShowDeleteInProgress(false);
+      setShowDeleteFailed(true);
+    });
   };
 
   return (
