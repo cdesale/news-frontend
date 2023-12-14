@@ -7,7 +7,6 @@ export const SortByContainer = () => {
   const onSortSelected = (eventKey) => {
     searchParams.delete("sort_by");
     searchParams.delete("order");
-    console.log(eventKey);
 
     if (eventKey === "votes-asc") {
       searchParams.append("sort_by", "votes");
@@ -27,6 +26,9 @@ export const SortByContainer = () => {
     } else if (eventKey === "created_at-desc") {
       searchParams.append("sort_by", "created_at");
       searchParams.append("order", "DESC");
+    } else if (eventKey === "Default") {
+      searchParams.append("sort_by", "created_at");
+      searchParams.append("order", "DESC");
     }
     setSearchParams(searchParams);
   };
@@ -38,8 +40,8 @@ export const SortByContainer = () => {
       </Dropdown.Toggle>
 
       <Dropdown.Menu>
-        <Dropdown.Item eventKey={"None"} key={"None"}>
-          None
+        <Dropdown.Item eventKey={"Default"} key={"Default"}>
+          Default
         </Dropdown.Item>
         <Dropdown.Item eventKey={"votes-asc"} key={"votes-asc"}>
           Vote Ascending
@@ -58,7 +60,7 @@ export const SortByContainer = () => {
           Comment count Descending
         </Dropdown.Item>
 
-        <Dropdown.Item eventKey={"created_at_count-asc"} key={"created_at-asc"}>
+        <Dropdown.Item eventKey={"created_at-asc"} key={"created_at-asc"}>
           Created_at Ascending
         </Dropdown.Item>
         <Dropdown.Item eventKey={"created_at-desc"} key={"created_at-desc"}>
