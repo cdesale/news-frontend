@@ -9,6 +9,7 @@ export const CommentContainer = (props) => {
   const [comments, setComments] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [showCommentDeletedToast, setShowCommentDeletedToast] = useState(false);
+  const [showError, setShowError] = useState(false);
 
   const { article_id } = props;
 
@@ -27,10 +28,15 @@ export const CommentContainer = (props) => {
   };
 
   useEffect(() => {
-    getCommentsById(article_id).then((data) => {
-      setComments(data);
-      setIsLoading(false);
-    });
+    getCommentsById(article_id)
+      .then((data) => {
+        setComments(data);
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        setIsLoading(false);
+        setShowError(true);
+      });
   }, []);
 
   return (
@@ -78,6 +84,7 @@ export const CommentContainer = (props) => {
             />
           );
         })}
+      {showError && "Something went wrong"}
     </>
   );
 };
