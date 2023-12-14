@@ -2,23 +2,17 @@ import axios from "axios";
 
 export const getAllArticles = (topic, sort_by, order) => {
   let url = "https://news-back-end.onrender.com/api/articles";
-
-  const queryObj = {};
-
-  if (topic) {
-    queryObj["topic"] = topic;
-  }
-
-  if (sort_by) {
-    queryObj["sort_by"] = sort_by;
-  }
-
-  if (order) {
-    queryObj["order"] = order;
-  }
-  return axios.get(url, { params: queryObj }).then(({ data }) => {
-    return data["articles"];
-  });
+  return axios
+    .get(url, {
+      params: {
+        topic: topic,
+        sort_by: sort_by,
+        order: order,
+      },
+    })
+    .then(({ data }) => {
+      return data["articles"];
+    });
 };
 
 export const deleteComment = (comment_id) => {
