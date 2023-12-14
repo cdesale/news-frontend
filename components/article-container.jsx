@@ -3,6 +3,7 @@ import { getAllArticles } from "../utils/api";
 import { ArticlesCard } from "./articles-card";
 import { SearchContainer } from "./search-container";
 import { useSearchParams } from "react-router-dom";
+import { SortByContainer } from "./sort-container";
 
 export const ArticleContainer = () => {
   const [articles, setArticles] = useState([]);
@@ -15,7 +16,11 @@ export const ArticleContainer = () => {
     setArticles([]);
     setShowError(false);
 
-    getAllArticles(searchParams.get("topic"))
+    getAllArticles(
+      searchParams.get("topic"),
+      searchParams.get("sort_by"),
+      searchParams.get("order")
+    )
       .then((data) => {
         setArticles(data);
         setIsLoading(false);
@@ -28,8 +33,8 @@ export const ArticleContainer = () => {
 
   return (
     <>
+      <SortByContainer />
       <SearchContainer />
-
       {isLoading && <p>Loading ...</p>}
 
       {articles &&
