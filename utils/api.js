@@ -1,11 +1,13 @@
 import axios from "axios";
 
-export const getAllArticles = () => {
-  return axios
-    .get("https://news-back-end.onrender.com/api/articles")
-    .then(({ data }) => {
-      return data["articles"];
-    });
+export const getAllArticles = (topic) => {
+  let url = "https://news-back-end.onrender.com/api/articles";
+  if (topic) {
+    url += `?topic=${topic}`;
+  }
+  return axios.get(url).then(({ data }) => {
+    return data["articles"];
+  });
 };
 
 export const deleteComment = (comment_id) => {
@@ -22,5 +24,13 @@ export const addNewComment = (article_id, comment) => {
     )
     .then(({ data }) => {
       return data["comment"][0];
+    });
+};
+
+export const getTopics = () => {
+  return axios
+    .get(`https://news-back-end.onrender.com/api/topics`)
+    .then(({ data }) => {
+      return data["topics"];
     });
 };
