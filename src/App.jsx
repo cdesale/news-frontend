@@ -17,7 +17,7 @@ function App() {
             path="/articles/:article_id"
             element={<IndividualArticleDetails />}
           />
-          <Route path="/*" element={<Error message="Route not found" />} />
+          <Route path="/*" element={<Error message="Page not found" />} />
         </Routes>
       </div>
     </BrowserRouter>
