@@ -6,6 +6,7 @@ import { useSearchParams } from "react-router-dom";
 import { SortByContainer } from "./sort-container";
 import { Error } from "../components/error-handling";
 
+
 export const ArticleContainer = () => {
   const [articles, setArticles] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
