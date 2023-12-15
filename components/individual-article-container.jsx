@@ -3,23 +3,30 @@ import { getArticlesById } from "../utils/article-by-id";
 import { ArticleData } from "./article-detail";
 import { useParams } from "react-router-dom";
 import { CommentContainer } from "./comments-container";
+import { Error } from "./error-handling";
 
 export const IndividualArticleDetails = () => {
   const [article, setArticle] = useState();
   const [isLoading, setIsLoading] = useState(true);
-  const [showSomethingWrong, setShowSomethingWrong] = useState(false);
+  const [errorMessage, setErrorMessage] = useState();
 
   const { article_id } = useParams();
 
   useEffect(() => {
+    setErrorMessage();
+
     getArticlesById(article_id)
       .then((data) => {
         setArticle(data);
         setIsLoading(false);
       })
       .catch((err) => {
-        setShowSomethingWrong(true);
         setIsLoading(false);
+        if (err.response.status === 404) {
+          setErrorMessage("Article not found");
+        } else {
+          setErrorMessage("Something went wrong!");
+        }
       });
   }, []);
 
@@ -35,8 +42,7 @@ export const IndividualArticleDetails = () => {
           {article.comment_count === 0 && <p>No Comments</p>}
         </div>
       )}
-      {showSomethingWrong && <p>Something went wrong!</p>}
+      {errorMessage && <Error message={errorMessage} />}
     </div>
   );
 };
-
